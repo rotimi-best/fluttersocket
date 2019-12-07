@@ -16,11 +16,15 @@ io.on('connection', function (socket) {
     });
 
     socket.on('onVerticalDragUpdate', function (msg) {
-        console.log('onVerticalDragUpdate: ' + msg);
+      const { position } = JSON.parse(JSON.stringify(msg))
+        io.emit('onVerticalDragUpdate', position);
+        console.log('onVerticalDragUpdate: ', position);
     });
 
     socket.on('onHorizontalDragUpdate', function (msg) {
-        console.log('onHorizontalDragUpdate: ' + msg);
+        const { position } = JSON.parse(JSON.stringify(msg))
+        io.emit('onHorizontalDragUpdate', position);
+        console.log('onHorizontalDragUpdate: ', position);
     });
 });
 
