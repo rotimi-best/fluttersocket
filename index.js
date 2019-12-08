@@ -15,14 +15,20 @@ io.on('connection', function (socket) {
         console.log('user disconnected');
     });
 
+    socket.on('touchmove', function (msg) {
+      const position = JSON.parse(JSON.stringify(msg))
+        io.emit('touchmove', position);
+        console.log('touchmove: ', position);
+    });
+
     socket.on('onVerticalDragUpdate', function (msg) {
-      const { position } = JSON.parse(JSON.stringify(msg))
+      const position = JSON.parse(JSON.stringify(msg))
         io.emit('onVerticalDragUpdate', position);
         console.log('onVerticalDragUpdate: ', position);
     });
 
     socket.on('onHorizontalDragUpdate', function (msg) {
-        const { position } = JSON.parse(JSON.stringify(msg))
+        const position= JSON.parse(JSON.stringify(msg))
         io.emit('onHorizontalDragUpdate', position);
         console.log('onHorizontalDragUpdate: ', position);
     });
